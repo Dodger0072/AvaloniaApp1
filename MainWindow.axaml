@@ -1,0 +1,104 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ComplexNumberApp"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="ComplexNumberApp.MainWindow"
+        x:DataType="local:MainViewModel"
+        Title="Complex Number Calculator"
+        Background="#E6E6FA">
+	<!-- Лавандовый фон -->
+
+	<Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<!-- Заголовок -->
+			<RowDefinition Height="Auto"/>
+			<!-- Первое число -->
+			<RowDefinition Height="Auto"/>
+			<!-- Второе число -->
+			<RowDefinition Height="Auto"/>
+			<!-- Кнопки -->
+			<RowDefinition Height="Auto"/>
+			<!-- Результат -->
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="Auto"/>
+		</Grid.ColumnDefinitions>
+
+		<!-- Крупный заголовок -->
+		<TextBlock Grid.Row="0" Grid.ColumnSpan="2"
+                   Text="Комплексные числа"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,20"
+                   Foreground="#333333"/>
+		<!-- Тёмно-серый цвет текста -->
+
+		<!-- Первое комплексное число -->
+		<TextBlock Grid.Row="1" Grid.Column="0"
+                   Text="Первое число:"
+                   Margin="0,0,10,5"/>
+		<StackPanel Grid.Row="1" Grid.Column="1"
+                    Orientation="Horizontal"
+                    Spacing="5">
+			<TextBox Width="80"
+                     Text="{Binding Real1, Mode=TwoWay}"
+                     Watermark="Re"/>
+			<TextBlock Text="+"/>
+			<TextBox Width="80"
+                     Text="{Binding Imaginary1, Mode=TwoWay}"
+                     Watermark="Im"/>
+			<TextBlock Text="i"/>
+		</StackPanel>
+
+		<!-- Второе комплексное число -->
+		<TextBlock Grid.Row="2" Grid.Column="0"
+                   Text="Второе число:"
+                   Margin="0,0,10,5"/>
+		<StackPanel Grid.Row="2" Grid.Column="1"
+                    Orientation="Horizontal"
+                    Spacing="5">
+			<TextBox Width="80"
+                     Text="{Binding Real2, Mode=TwoWay}"
+                     Watermark="Re"/>
+			<TextBlock Text="+"/>
+			<TextBox Width="80"
+                     Text="{Binding Imaginary2, Mode=TwoWay}"
+                     Watermark="Im"/>
+			<TextBlock Text="i"/>
+		</StackPanel>
+
+		<!-- Кнопки операций -->
+		<StackPanel Grid.Row="3" Grid.ColumnSpan="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Spacing="10"
+                    Margin="0,15">
+			<Button Content="Сложить (+)"
+                    Command="{Binding AddCommand}"
+                    Width="100"/>
+			<Button Content="Вычесть (-)"
+                    Command="{Binding SubtractCommand}"
+                    Width="100"/>
+			<Button Content="Умножить (*)"
+                    Command="{Binding MultiplyCommand}"
+                    Width="100"/>
+			<Button Content="Разделить (/)"
+                    Command="{Binding DivideCommand}"
+                    Width="100"/>
+		</StackPanel>
+
+		<!-- Результат -->
+		<TextBlock Grid.Row="4" Grid.Column="0"
+                   Text="Результат:"
+                   Margin="0,15,10,0"/>
+		<TextBlock Grid.Row="4" Grid.Column="1"
+                   Text="{Binding Result}"
+                   FontWeight="Bold"
+                   Margin="0,15,0,0"/>
+	</Grid>
+</Window>
